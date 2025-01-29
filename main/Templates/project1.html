@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project 1 - Details</title>
+    {% load static %}
+    <!-- Add Tailwind CSS CDN link -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800">
+
+    <!-- Header Section -->
+    <header class="bg-blue-900 text-white py-8 shadow-lg">
+        <div class="container mx-auto text-center">
+            <h1 class="text-4xl font-extrabold tracking-wider mb-4">Vital Care Hospital Management System</h1>
+            <nav>
+                <a href="{% url 'home' %}" class="text-xl font-medium uppercase hover:text-blue-400 transition-all">Home</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Section -->
+    <main class="container mx-auto py-16 px-6">
+        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
+            <!-- Admin Role -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <img src="{% static 'images/Admin.png' %}" alt="Admin" class="w-full h-48 object-cover rounded-xl mb-6">
+                <h3 class="text-2xl font-semibold text-blue-900 mb-4">Admin</h3>
+                <p class="text-lg text-gray-600">Responsible for overseeing the entire hospital system, managing users, and ensuring smooth operations.</p>
+            </div>
+
+            <!-- Doctor Role -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <img src="{% static 'images/Doctor.png' %}" alt="Doctor" class="w-full h-48 object-cover rounded-xl mb-6">
+                <h3 class="text-2xl font-semibold text-blue-900 mb-4">Doctor</h3>
+                <p class="text-lg text-gray-600">Consults with patients, manages their medical records, and prescribes treatments for recovery.</p>
+            </div>
+
+            <!-- Patient Role -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <img src="{% static 'images/patient.png' %}" alt="Patient" class="w-full h-48 object-cover rounded-xl mb-6">
+                <h3 class="text-2xl font-semibold text-blue-900 mb-4">Patient</h3>
+                <p class="text-lg text-gray-600">Has access to personal health records, schedules appointments, and communicates with doctors.</p>
+            </div>
+
+            <!-- Nurse Role -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <img src="{% static 'images/nurse.png' %}" alt="Nurse" class="w-full h-48 object-cover rounded-xl mb-6">
+                <h3 class="text-2xl font-semibold text-blue-900 mb-4">Nurse</h3>
+                <p class="text-lg text-gray-600">Provides direct patient care, assists doctors, and ensures the implementation of treatment plans.</p>
+            </div>
+
+            <!-- Receptionist Role -->
+            <div class="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all">
+                <img src="{% static 'images/receptionist.png' %}" alt="Receptionist" class="w-full h-48 object-cover rounded-xl mb-6">
+                <h3 class="text-2xl font-semibold text-blue-900 mb-4">Receptionist</h3>
+                <p class="text-lg text-gray-600">Manages patient scheduling, admissions, discharges, and payment processing.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Section -->
+    <footer class="bg-blue-900 text-white py-6 text-center">
+        <p class="text-lg">&copy; 2024 Gautam Pardeshi. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
+
+

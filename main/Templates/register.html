@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register with Face Recognition</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .register-container h2 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        #register-form input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .camera-container {
+            margin: 20px 0;
+            position: relative;
+        }
+
+        #video {
+            width: 100%;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
+
+        #canvas {
+            display: none;
+            margin-top: 10px;
+        }
+
+        #capture-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        #capture-button:hover {
+            background-color: #0056b3;
+        }
+
+        button[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #218838;
+        }
+
+        #message {
+            margin-top: 15px;
+            color: #555;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Register with Face Recognition</h2>
+        <form id="register-form">
+            <input type="text" name="username" id="username" placeholder="Username" required>
+            <div class="camera-container">
+                <video id="video" autoplay></video>
+                <button type="button" id="capture-button">Capture Face</button>
+                <canvas id="canvas" width="300" height="200"></canvas>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const captureButton = document.getElementById('capture-button');
+        const registerForm = document.getElementById('register-form');
+        const messageDiv = document.getElementById('message');
+        const context = canvas.getContext('2d');
+        let capturedImage = null;
+
+        // Start the video stream
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then((stream) => {
+                video.srcObject = stream;
+            })
+            .catch((error) => {
+                messageDiv.innerText = 'Error accessing camera: ' + error.message;
+            });
+
+        // Capture the image from video
+        captureButton.addEventListener('click', () => {
+            canvas.style.display = 'block';
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+            capturedImage = canvas.toDataURL('image/jpeg');
+            messageDiv.innerText = "Face captured successfully!";
+        });
+
+        // Handle form submission
+        registerForm.onsubmit = async (e) => {
+            e.preventDefault();
+            if (!capturedImage) {
+                messageDiv.innerText = "Please capture a face first!";
+                return;
+            }
+
+            const formData = new FormData(registerForm);
+            formData.append('face_image', capturedImage);
+
+            try {
+                const response = await fetch('/register/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+                messageDiv.innerText = data.message || 'Registration successful!';
+            } catch (error) {
+                messageDiv.innerText = 'Registration failed: ' + error.message;
+            }
+        };
+    </script>
+</body>
+</html>

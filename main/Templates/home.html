@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Gautam Pardeshi</title>
+    {% load static %}
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation Bar -->
+    <header class="flex justify-between items-center px-10 py-5 bg-gray-800">
+        <h1 class="text-2xl font-bold">Gautam Pardeshi</h1>
+        <nav class="space-x-6">
+            <a href="{% url 'about' %}" class="hover:text-blue-400">About</a>
+            <a href="{% url 'project' %}" class="hover:text-blue-400">Projects</a>
+            <a href="{% url 'contact' %}" class="hover:text-blue-400">Contact</a>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto py-20 px-10">
+        <div class="text-left max-w-lg">
+            <p class="text-gray-400 uppercase tracking-wide">Hi, I'm Gautam</p>
+            <h2 class="text-5xl font-bold mt-2">I'm a Web Developer</h2>
+            <p class="text-gray-300 mt-4">Specializing in Django, Python, and Full-Stack Development. I build efficient and scalable web applications.</p>
+            <a href="{% url 'project' %}" class="mt-6 inline-block px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-semibold rounded-lg">View My Projects</a>
+        </div>
+        <!-- Photo Section -->
+        <div class="mt-10 md:mt-0">
+            <img src="{% static 'images/photo1.png' %}" alt="Gautam Pardeshi" class="w-96 h-auto mx-auto md:mx-0">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center py-6 bg-gray-800 mt-10">
+        <p>&copy; 2024 Gautam Pardeshi. All rights reserved.</p>
+    </footer>
+</body>
+</html>

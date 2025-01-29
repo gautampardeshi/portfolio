@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+        table {
+            width: 90%;
+            margin: 2rem auto;
+            border-collapse: collapse;
+            background-color: white;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 1rem;
+            text-align: center;
+        }
+        th {
+            background-color: #333;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: white;
+            background-color: #007BFF;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <a href="{% url 'home' %}">Go to Home</a>
+    </header>
+    <main>
+        <h2 style="text-align: center;">Contact Messages</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Message</th>
+                    <th>Submitted At</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in messages %}
+                    <tr>
+                        <td>{{ message.name }}</td>
+                        <td>{{ message.email }}</td>
+                        <td>{{ message.message }}</td>
+                        <td>{{ message.submitted_at }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="4">No messages found</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>
+
