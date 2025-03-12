@@ -33,6 +33,7 @@ import os
 
 ALLOWED_HOSTS = ["your-railway-app-url", "localhost"]
 DEBUG = False
+CSRF_TRUSTED_ORIGINS = ["https://your-railway-app-url"]
 
 # Application definition
 
