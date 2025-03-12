@@ -26,10 +26,13 @@ MEDIA_ROOT = BASE_DIR / 'media'
 SECRET_KEY = 'django-insecure-oy@f#-i3r&f*9xac=x0d*nqt2!(zg9*6rgakqlo5drs3n(j_ln'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
 
 ALLOWED_HOSTS = []
+import os
 
+ALLOWED_HOSTS = ["your-railway-app-url", "localhost"]
+DEBUG = False
 
 # Application definition
 
